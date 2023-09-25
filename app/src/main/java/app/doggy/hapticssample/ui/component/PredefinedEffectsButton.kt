@@ -40,9 +40,9 @@ private fun PredefinedEffectsButtonPreview() {
   HapticsSampleTheme {
     Surface {
       PredefinedEffectsButton(
-        vibrator = vibrator,
         label = "VIRTUAL_KEY",
         effectId = EFFECT_CLICK,
+        vibrator = vibrator,
       )
     }
   }

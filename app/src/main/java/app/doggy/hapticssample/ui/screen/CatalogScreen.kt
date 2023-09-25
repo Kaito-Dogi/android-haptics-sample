@@ -25,6 +25,7 @@ import android.view.HapticFeedbackConstants.TEXT_HANDLE_MOVE
 import android.view.HapticFeedbackConstants.VIRTUAL_KEY
 import android.view.HapticFeedbackConstants.VIRTUAL_KEY_RELEASE
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -33,13 +34,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import app.doggy.hapticssample.ui.component.CompositionPrimitivesButton
 import app.doggy.hapticssample.ui.component.HapticFeedbackConstantsButton
+import app.doggy.hapticssample.ui.component.Header
 import app.doggy.hapticssample.ui.component.PredefinedEffectsButton
 import app.doggy.hapticssample.ui.component.Primitive
+import app.doggy.hapticssample.ui.theme.Dimen
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun CatalogScreen(
   modifier: Modifier = Modifier,
@@ -49,60 +52,64 @@ internal fun CatalogScreen(
 
   LazyColumn(
     modifier = modifier,
-    contentPadding = PaddingValues(
-      start = 16.dp,
-      top = 16.dp,
-      end = 16.dp,
-    ),
+    contentPadding = PaddingValues(Dimen.M),
   ) {
+    stickyHeader {
+      Header(title = "HapticFeedbackConstants")
+    }
     items(feedBackConstantList) {
+      Spacer(modifier = Modifier.height(Dimen.S))
       HapticFeedbackConstantsButton(
         label = it.first,
         feedBackConstant = it.second,
       )
-      Spacer(modifier = Modifier.height(8.dp))
     }
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
       items(feedBackConstantOMR1List) {
+        Spacer(modifier = Modifier.height(Dimen.S))
         HapticFeedbackConstantsButton(
           label = it.first,
           feedBackConstant = it.second,
         )
-        Spacer(modifier = Modifier.height(8.dp))
       }
     }
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
       items(feedbackConstantRList) {
+        Spacer(modifier = Modifier.height(Dimen.S))
         HapticFeedbackConstantsButton(
           label = it.first,
           feedBackConstant = it.second,
         )
-        Spacer(modifier = Modifier.height(8.dp))
       }
     }
 
+    stickyHeader {
+      Spacer(modifier = Modifier.height(Dimen.M))
+      Header(title = "Predefined VibrationEffect")
+    }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
       items(effectIdList) {
+        Spacer(modifier = Modifier.height(Dimen.S))
         PredefinedEffectsButton(
           label = it.first,
           effectId = it.second,
           vibrator = vibrator,
         )
-        Spacer(modifier = Modifier.height(8.dp))
       }
     }
 
-
+    stickyHeader {
+      Spacer(modifier = Modifier.height(Dimen.M))
+      Header(title = "VibrationEffect composition")
+    }
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
       item {
+        Spacer(modifier = Modifier.height(Dimen.S))
         CompositionPrimitivesButton(
           label = "Custom Haptic Effect",
           primitiveList = primitiveIdList,
           vibrator = vibrator,
         )
-        Spacer(modifier = Modifier.height(8.dp))
       }
     }
   }

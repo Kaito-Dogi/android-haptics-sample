@@ -1,11 +1,11 @@
 package app.doggy.hapticssample.ui.component
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import app.doggy.hapticssample.ui.theme.HapticsSampleTheme
 
+@RequiresApi(Build.VERSION_CODES.R)
 @Composable
 internal fun CompositionPrimitivesButton(
   label: String,
@@ -25,19 +26,17 @@ internal fun CompositionPrimitivesButton(
     label = label,
     modifier = modifier,
   ) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-      vibrator.vibrate(
-        VibrationEffect.startComposition().apply {
-          primitiveList.forEach {
-            addPrimitive(
-              it.primitiveId,
-              it.scale,
-              it.delay,
-            )
-          }
-        }.compose(),
-      )
-    }
+    vibrator.vibrate(
+      VibrationEffect.startComposition().apply {
+        primitiveList.forEach {
+          addPrimitive(
+            it.primitiveId,
+            it.scale,
+            it.delay,
+          )
+        }
+      }.compose(),
+    )
   }
 }
 
@@ -54,7 +53,7 @@ internal data class Primitive(
   val delay: Int = 0,
 )
 
-@SuppressLint("InlinedApi")
+@RequiresApi(Build.VERSION_CODES.R)
 @Preview
 @Composable
 private fun CompositionPrimitivesButtonPreview() {

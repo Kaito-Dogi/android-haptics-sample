@@ -29,9 +29,7 @@ internal fun PredefinedEffectsButton(
     label = label,
     modifier = modifier,
   ) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-      vibrator.vibrate(VibrationEffect.createPredefined(effectId))
-    }
+    vibrator.vibrate(VibrationEffect.createPredefined(effectId))
   }
 }
 

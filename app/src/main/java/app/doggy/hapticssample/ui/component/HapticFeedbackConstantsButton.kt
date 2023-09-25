@@ -3,6 +3,7 @@ package app.doggy.hapticssample.ui.component
 import android.view.HapticFeedbackConstants.VIRTUAL_KEY
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import app.doggy.hapticssample.ui.theme.HapticsSampleTheme
 
@@ -10,8 +11,12 @@ import app.doggy.hapticssample.ui.theme.HapticsSampleTheme
 internal fun HapticFeedbackConstantsButton(
   label: String,
   feedBackConstant: Int,
+  modifier: Modifier = Modifier,
 ) {
-  CustomButton(label = label) { view ->
+  CustomButton(
+    label = label,
+    modifier = modifier,
+  ) { view ->
     view.performHapticFeedback(feedBackConstant)
   }
 }

@@ -7,6 +7,7 @@ import android.os.VibrationEffect.EFFECT_CLICK
 import android.os.Vibrator
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
@@ -14,11 +15,15 @@ import app.doggy.hapticssample.ui.theme.HapticsSampleTheme
 
 @Composable
 internal fun PredefinedEffectsButton(
-  vibrator: Vibrator,
   label: String,
   effectId: Int,
+  vibrator: Vibrator,
+  modifier: Modifier = Modifier,
 ) {
-  CustomButton(label = label) {
+  CustomButton(
+    label = label,
+    modifier = modifier,
+  ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
       vibrator.vibrate(VibrationEffect.createPredefined(effectId))
     }

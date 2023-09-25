@@ -2,8 +2,14 @@ package app.doggy.hapticssample.ui.component
 
 import android.os.Build
 import android.os.VibrationEffect
+import android.os.VibrationEffect.Composition.PRIMITIVE_CLICK
+import android.os.VibrationEffect.Composition.PRIMITIVE_QUICK_FALL
+import android.os.VibrationEffect.Composition.PRIMITIVE_QUICK_RISE
+import android.os.VibrationEffect.Composition.PRIMITIVE_SLOW_RISE
+import android.os.VibrationEffect.Composition.PRIMITIVE_TICK
 import android.os.Vibrator
 import androidx.annotation.FloatRange
+import androidx.annotation.IntDef
 import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.Surface
@@ -41,7 +47,7 @@ internal fun CompositionPrimitivesButton(
 }
 
 internal data class Primitive(
-  val primitiveId: Int,
+  @PrimitiveId val primitiveId: Int,
   @FloatRange(
     from = 0.0,
     to = 1.0,
@@ -54,6 +60,21 @@ internal data class Primitive(
 )
 
 @RequiresApi(Build.VERSION_CODES.R)
+@Retention(AnnotationRetention.SOURCE)
+@Target(AnnotationTarget.VALUE_PARAMETER)
+@IntDef(
+  PRIMITIVE_CLICK,
+  // PRIMITIVE_THUD,
+  // PRIMITIVE_SPIN,
+  PRIMITIVE_QUICK_RISE,
+  PRIMITIVE_SLOW_RISE,
+  PRIMITIVE_QUICK_FALL,
+  PRIMITIVE_TICK,
+  // PRIMITIVE_LOW_TICK,
+)
+private annotation class PrimitiveId
+
+@RequiresApi(Build.VERSION_CODES.R)
 @Preview
 @Composable
 private fun CompositionPrimitivesButtonPreview() {
@@ -62,11 +83,11 @@ private fun CompositionPrimitivesButtonPreview() {
 
   val primitiveList = listOf(
     Primitive(
-      primitiveId = VibrationEffect.Composition.PRIMITIVE_SLOW_RISE,
+      primitiveId = PRIMITIVE_SLOW_RISE,
       scale = 0.3f,
     ),
     Primitive(
-      primitiveId = VibrationEffect.Composition.PRIMITIVE_QUICK_FALL,
+      primitiveId = PRIMITIVE_QUICK_FALL,
       scale = 0.3f,
     ),
   )

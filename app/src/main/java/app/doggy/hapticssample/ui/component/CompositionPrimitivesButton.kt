@@ -14,6 +14,7 @@ import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +47,7 @@ internal fun CompositionPrimitivesButton(
   }
 }
 
+@Stable
 internal data class Primitive(
   @PrimitiveId val primitiveId: Int,
   @FloatRange(

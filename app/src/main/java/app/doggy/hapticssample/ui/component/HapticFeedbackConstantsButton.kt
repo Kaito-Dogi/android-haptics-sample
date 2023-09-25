@@ -44,11 +44,11 @@ internal fun HapticFeedbackConstantsButton(
   VIRTUAL_KEY,
   // KEYBOARD_TAP, // KEYBOARD_PRESS と値が重複するためコメントアウト
   LONG_PRESS,
-  KEYBOARD_PRESS,
+  KEYBOARD_PRESS, // 以下 API level 27 (O_MR1) 以上
   KEYBOARD_RELEASE,
   TEXT_HANDLE_MOVE,
   VIRTUAL_KEY_RELEASE,
-  CONFIRM,
+  CONFIRM, // 以下 API level 30 (R) 以上
   REJECT,
   GESTURE_START,
   GESTURE_END,

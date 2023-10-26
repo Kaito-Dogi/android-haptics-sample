@@ -2,7 +2,8 @@
 
 2023/09/26 開催の potatotips #84 で発表した LT のサンプルプロジェクトです。
 
-スライドは[こちら](https://speakerdeck.com/doggy/android-demo-haptics-ru-men-potatotips-number-84-at-kaito-dogi)
+- [スライド](https://github.com/Kaito-Dogi/slides/tree/main/2023_09_26)
+- [Speaker Deck](https://speakerdeck.com/doggy/android-demo-haptics-ru-men-potatotips-number-84-at-kaito-dogi)
 
 ## Preview
 
